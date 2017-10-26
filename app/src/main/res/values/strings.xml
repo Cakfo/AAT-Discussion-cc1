@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">AAT Discussions cc1</string>
+    <string name="next">Go to next</string>
+    <string name="show_dialog">show dialog</string>
 </resources>
