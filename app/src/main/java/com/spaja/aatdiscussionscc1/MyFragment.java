@@ -1,12 +1,16 @@
 package com.spaja.aatdiscussionscc1;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import io.realm.Realm;
 
 /**
  * Created by Spaja on 26-Oct-17.
@@ -15,10 +19,12 @@ import android.widget.Button;
 public class MyFragment extends android.app.Fragment {
 
     View view;
+    private Realm realm;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        realm = Realm.getDefaultInstance();
     }
 
     @Nullable
@@ -30,10 +36,20 @@ public class MyFragment extends android.app.Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.putExtra("data", true);
-                getActivity().setResult(2, intent);
-                getActivity().onBackPressed();
+//                Intent intent = new Intent();
+//                intent.putExtra("data", true);
+//                getActivity().setResult(2, intent);
+                realm.executeTransaction(new Realm.Transaction() {
+                    @Override
+                    public void execute(Realm realm) {
+                        Data data = new Data();
+                        data.setId(1);
+                        data.setName("fragment");
+                        realm.copyToRealmOrUpdate(data);
+                    }
+                });
+                getActivity().finish();
+
             }
         });
 
