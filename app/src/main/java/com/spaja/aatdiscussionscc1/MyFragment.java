@@ -32,7 +32,7 @@ public class MyFragment extends android.app.Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.putExtra("data", true);
-                getActivity().setResult(MainActivity.RESULT_OK, intent);
+                getActivity().setResult(2, intent);
                 getActivity().onBackPressed();
             }
         });

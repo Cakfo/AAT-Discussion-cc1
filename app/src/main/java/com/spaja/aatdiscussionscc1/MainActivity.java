@@ -51,6 +51,11 @@ public class MainActivity extends AppCompatActivity {
                 alertBuilder.setTitle("Return data");
                 alertBuilder.setMessage("I came from second activity");
                 alertBuilder.show();
+            } else if (resultCode == 2) {
+                AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
+                alertBuilder.setTitle("Return data");
+                alertBuilder.setMessage("I came from fragment");
+                alertBuilder.show();
             }
         }
     }
