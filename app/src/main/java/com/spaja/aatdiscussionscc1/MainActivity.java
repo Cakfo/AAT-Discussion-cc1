@@ -7,9 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
+import com.spaja.aatdiscussionscc1.model.Response;
+import com.spaja.aatdiscussionscc1.networking.RestAPI;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import io.realm.Realm;
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,8 +32,20 @@ public class MainActivity extends AppCompatActivity {
         startAct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, SecondActivity.class);
-                startActivityForResult(i, 1);
+//                Intent i = new Intent(MainActivity.this, SecondActivity.class);
+//                startActivityForResult(i, 1);
+                RestAPI.service.getObject().enqueue(new Callback<Response>() {
+                    @Override
+                    public void onResponse(Call<Response> call, retrofit2.Response<Response> response) {
+                        //TODO Editovati response i poslati modifikovani objekat
+                        //sa RestAPI.service.sendObject(new Response()).enqueue(...)
+                    }
+
+                    @Override
+                    public void onFailure(Call<Response> call, Throwable t) {
+
+                    }
+                });
             }
         });
 
